@@ -6,14 +6,20 @@ arquivo. Isso é deliberado: quanto menor o diff, mais barato o `git merge upstr
 
 ## As duas mudanças
 
-### 1. `when_to_use` em português
+### 1. `when_to_use` em português — **11 skills**
 
 O agente decide invocar uma skill lendo a `description` e o `when_to_use`. Com eles em inglês
 genérico, as frases reais do usuário — *"vamos fazer uma triagem das issues"*, *"faça um
 handoff"*, *"alinhe comigo"* — não casavam.
 
+São as 11 citadas nominalmente nas regras do usuário: `triage`, `to-tickets`, `to-spec`,
+`handoff`, `grill-me`, `grill-with-docs`, `improve-codebase-architecture`, `diagnosing-bugs`,
+`prototype`, `tdd`, `writing-for-agents`.
+
 Os gatilhos vieram de `docs/skills/overlay-when-to-use.json` no repo `claude-config`, extraído
-das cópias locais em 2026-08-15.
+das cópias locais em 2026-08-15. Enquanto viveram só naquele arquivo de documentação eles não
+disparavam — gatilho fora do frontmatter não entra na decisão de invocar. Esse era o custo
+declarado da Fase 2, e este fork existe para zerá-lo.
 
 ### 2. `disable-model-invocation` removido em 7 skills
 
@@ -65,13 +71,18 @@ Conflito só acontece se o Matt mexer nas **mesmas linhas de frontmatter** — `
 `when_to_use` ou o flag. Nesse caso, resolva mantendo a `description` nova dele e o
 `when_to_use` seu.
 
-Depois do merge, **reaplique e confira**:
+Depois do merge, **reaplique e confira as duas coisas**:
 
 ```bash
+# 1. o flag nao voltou nas 7
 grep -l "disable-model-invocation: true" skills/*/*/SKILL.md
+
+# 2. as 11 continuam com o gatilho PT-BR
+grep -L "when_to_use:" skills/*/{triage,to-tickets,to-spec,handoff,grill-me,grill-with-docs,improve-codebase-architecture,diagnosing-bugs,prototype,tdd,writing-for-agents}/SKILL.md 2>/dev/null
 ```
 
-Se alguma das 7 reaparecer na lista, o merge trouxe o flag de volta — remova de novo.
+O primeiro deve não listar nenhuma das 7; o segundo (`-L`, maiúsculo — lista quem **não**
+casa) deve sair vazio. Se algo aparecer, o merge desfez a customização — reaplique.
 
 E então, no `claude-config`, bump do `sha` em `home-claude/settings.json` →
 `extraKnownMarketplaces` → `mattpocock-skills-fork`. **O pin é deliberado**: o conteúdo é de

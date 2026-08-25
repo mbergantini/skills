@@ -1,6 +1,7 @@
 ---
 name: prototype
 description: Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like.
+when_to_use: Gatilhos em PT-BR (frases reais do usuário) — "quero uma prévia apenas, de como ficaria", "como ficaria a planilha/tela para o analista", "quero ver antes de fazermos de verdade", "mockup", "protótipo".
 ---
 
 # Prototype

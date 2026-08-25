@@ -8,7 +8,7 @@ The second thing that separates it from labelling by hand: it recommends and wai
 
 ## When to reach for it
 
-You invoke this by typing `/triage` and then describing what you want in plain language. The [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own. "Show me anything that needs my attention", "let's look at #42", "move #42 to ready-for-agent".
+You invoke this by typing `/triage` and then describing what you want in plain language. The [agent](https://www.aihero.dev/ai-coding-dictionary/agent) can also reach for it on its own in this fork, which removes the `disable-model-invocation` flag that upstream sets here (see [CUSTOMIZACAO.md](https://github.com/mbergantini/skills/blob/main/CUSTOMIZACAO.md)). "Show me anything that needs my attention", "let's look at #42", "move #42 to ready-for-agent".
 
 | What you have | Where to go |
 | --- | --- |

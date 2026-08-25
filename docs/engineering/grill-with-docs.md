@@ -6,7 +6,7 @@ It is **[stateful](https://www.aihero.dev/ai-coding-dictionary/stateful)**. Ever
 
 ## When to reach for it
 
-You invoke this by typing `/grill-with-docs`; the agent will not reach for it on its own.
+You invoke this by typing `/grill-with-docs`; the agent can also reach for it on its own in this fork, which removes the `disable-model-invocation` flag that upstream sets here (see [CUSTOMIZACAO.md](https://github.com/mbergantini/skills/blob/main/CUSTOMIZACAO.md)).
 
 Reach for it at the start of a change, in a repo, when the plan is still fuzzy and the words for the thing are not settled yet. It is the single-session tool. Which grilling skill you want depends on what is in front of you:
 

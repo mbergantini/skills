@@ -55,9 +55,21 @@ O que **não** foi acompanhado, por decisão explicita:
 | Invariante do repo | Situação neste fork |
 |---|---|
 | `agents/openai.yaml` casado com o flag | **acompanhado** (7 blocos `policy:` removidos) |
-| `README.md` agrupa em User-invoked / Model-invoked | **não acompanhado**, de propósito |
-| `README.md` de cada bucket, idem | **não acompanhado**, de propósito |
+| `docs/` afirma quem alcança a skill | **acompanhado** (a cláusula falsa foi trocada nas 7 páginas) |
+| `README.md` agrupa em User-invoked / Model-invoked | **nota de desvio**, sem mover entradas |
+| `README.md` de cada bucket, idem | **nota de desvio**, sem mover entradas |
 | `ask-matt` rotula quem invoca o quê | **não acompanhado**, de propósito |
+
+A distinção entre as duas primeiras linhas e as três últimas é a diferença entre **afirmar um
+fato** e **organizar uma lista**. As páginas de `docs/` diziam, com todas as letras, que o agente
+não alcança a skill sozinho: neste fork isso é falso, então a cláusula foi trocada, uma por
+página, em posição estável. Já o agrupamento dos `README.md` é organização do upstream, e movê-lo
+criaria conflito de apagar-e-inserir em duas seções de três arquivos que o Matt edita a cada skill
+nova. A nota de desvio cobre o leitor pelo mesmo preço, com uma linha em posição fixa.
+
+O `ask-matt` fica como está porque ele roteia por **fluxo de trabalho**, não por permissão: tudo
+que ele diz (`/triage` para issues que chegaram cruas) continua verdadeiro. O fork **acrescenta**
+um caminho, não retira o que o roteador descreve.
 
 A razão é a mesma que justifica o fork inteiro: reescrever três `README.md` e o roteador
 transformaria cada `git merge upstream/main` numa negociação de conflitos em arquivos que o Matt
@@ -105,6 +117,18 @@ grep -L "when_to_use:" skills/*/{triage,to-tickets,to-spec,handoff,grill-me,gril
 
 O primeiro deve não listar nenhuma das 7; o segundo (`-L`, maiúsculo, lista quem **não**
 casa) deve sair vazio. Se algo aparecer, o merge desfez a customização: reaplique.
+
+⚠ **Depois de mexer em frontmatter, rode um parser YAML.** Trocar o travessão por
+dois-pontos nas 11 linhas `when_to_use:` quebrou **todas elas**: em YAML, um `: ` dentro de
+escalar simples fecha o escalar, e `chave: texto: mais` é erro de sintaxe
+(*mapping values are not allowed here*). Por isso o valor vai entre **aspas simples**, onde `:` e
+`"` são literais. Nenhum gatilho contém apóstrofo, então não há escape a fazer. A conferência:
+
+```bash
+python -c "import io,glob,re,yaml; [yaml.safe_load(re.match(r'^---.n(.*?).n---',io.open(f,encoding='utf-8').read(),re.S).group(1)) for f in glob.glob('skills/*/*/SKILL.md')]"
+```
+
+O travessão **não** quebrava nada: ele saiu por causa da regra de prosa, não por sintaxe.
 
 ⚠ **Ao recopiar um gatilho da fonte, tire o travessão.** O `CLAUDE.md:25` deste repo proíbe
 travessão em toda a prosa, inclusive em `SKILL.md`. A fonte (`gatilhos-ptbr.md`, no

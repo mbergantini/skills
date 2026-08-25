@@ -1,7 +1,7 @@
 ---
 name: triage
 description: Move issues and external PRs through a state machine of triage roles, categorise, verify, grill if needed, and write agent-ready briefs.
-when_to_use: Gatilhos em PT-BR (frases reais do usuário): "faça uma avaliação das issues abertas", "vamos fazer uma triagem das issues", "releitura das issues, por onde você sugere que continuemos", "por onde atacar", "qual a próxima que iremos resolver", "veja se é melhor resolver agora ou abrir uma issue". Sempre que a conversa for decidir o que fazer com issues abertas, use esta skill em vez de só listar com gh.
+when_to_use: 'Gatilhos em PT-BR (frases reais do usuário): "faça uma avaliação das issues abertas", "vamos fazer uma triagem das issues", "releitura das issues, por onde você sugere que continuemos", "por onde atacar", "qual a próxima que iremos resolver", "veja se é melhor resolver agora ou abrir uma issue". Sempre que a conversa for decidir o que fazer com issues abertas, use esta skill em vez de só listar com gh.'
 ---
 
 # Triage

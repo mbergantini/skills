@@ -6,7 +6,7 @@ What it buys is **portability**, not compression. That makes the skill narrower 
 
 ## When to reach for it
 
-You invoke this by typing `/handoff`; the agent won't reach for it on its own. Pass a note about what the next session is for, and the document is written for it.
+You invoke this by typing `/handoff`; the agent can also reach for it on its own in this fork, which removes the `disable-model-invocation` flag that upstream sets here (see [CUSTOMIZACAO.md](https://github.com/mbergantini/skills/blob/main/CUSTOMIZACAO.md)). Pass a note about what the next session is for, and the document is written for it.
 
 Four situations are the whole trigger:
 

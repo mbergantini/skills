@@ -1,7 +1,7 @@
 ---
 name: to-tickets
 description: Break a plan, spec, or the current conversation into a set of tracer-bullet tickets, each declaring its blocking edges, published to the configured tracker (edges as text in one file per ticket locally, or native blocking links on a real tracker).
-when_to_use: Gatilhos em PT-BR (frases reais do usuário): "abra uma issue também para...", "quero que crie as issues disso", "vamos quebrar esse plano em issues", "projete a issue de...". Ao fim de um grill/plano aprovado com mais de um entregável, proponha esta skill para materializar as issues.
+when_to_use: 'Gatilhos em PT-BR (frases reais do usuário): "abra uma issue também para...", "quero que crie as issues disso", "vamos quebrar esse plano em issues", "projete a issue de...". Ao fim de um grill/plano aprovado com mais de um entregável, proponha esta skill para materializar as issues.'
 ---
 
 # To Tickets

@@ -1,7 +1,7 @@
 ---
 name: improve-codebase-architecture
 description: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
-when_to_use: Gatilhos em PT-BR (frases reais do usuário) — "revisão geral da estrutura do projeto, no sentido de organização", "sinto que as pastas/arquivos estão bagunçados", "vamos refatorar", "plano de refatoração".
+when_to_use: Gatilhos em PT-BR (frases reais do usuário): "revisão geral da estrutura do projeto, no sentido de organização", "sinto que as pastas/arquivos estão bagunçados", "vamos refatorar", "plano de refatoração".
 ---
 
 # Improve Codebase Architecture

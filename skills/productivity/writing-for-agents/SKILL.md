@@ -1,7 +1,7 @@
 ---
 name: writing-for-agents
 description: Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md.
-when_to_use: Gatilhos em PT-BR — "vamos criar uma skill", "transforme isso numa skill", "vira isso numa skill para reusar", "promova essa receita a skill". Use TAMBÉM sem o usuário pedir, ao perceber que uma receita já foi repetida em 2+ sessões. Para EDITAR skill existente ou otimizar a description, prefira anthropic-skills:skill-creator.
+when_to_use: Gatilhos em PT-BR: "vamos criar uma skill", "transforme isso numa skill", "vira isso numa skill para reusar", "promova essa receita a skill". Use TAMBÉM sem o usuário pedir, ao perceber que uma receita já foi repetida em 2+ sessões. Para EDITAR skill existente ou otimizar a description, prefira anthropic-skills:skill-creator.
 ---
 
 Reference for writing any document an agent consumes: a skill, an `AGENTS.md` / `CLAUDE.md`, a doc reached by a pointer. The packaging differs; the writing does not: the same levers make each one predictable, since the agent takes the same _process_ every run rather than producing the same output.

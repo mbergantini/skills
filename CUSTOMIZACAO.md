@@ -12,6 +12,14 @@ O agente decide invocar uma skill lendo a `description` e o `when_to_use`. Com e
 genérico, as frases reais do usuário (*"vamos fazer uma triagem das issues"*, *"faça um
 handoff"*, *"alinhe comigo"*) não casavam.
 
+**Alcance:** isto vale para o harness do **Claude Code**, onde `when_to_use` entra na
+descrição da tool (*"Becomes part of the tool description"*, no schema de frontmatter do
+binário). O formato de skill do **Codex** lê apenas `name` e `description`, então lá estes
+gatilhos não participam da descoberta. Duplicá-los na `description` significaria reescrever o
+texto em inglês do upstream em 11 arquivos, que é exatamente o tipo de diff que encarece o
+merge, e o Codex não é o harness em uso aqui. Fica registrado como limite conhecido, não como
+esquecimento.
+
 São as 11 citadas nominalmente nas regras do usuário: `triage`, `to-tickets`, `to-spec`,
 `handoff`, `grill-me`, `grill-with-docs`, `improve-codebase-architecture`, `diagnosing-bugs`,
 `prototype`, `tdd`, `writing-for-agents`.
@@ -108,15 +116,21 @@ Conflito só acontece se o Matt mexer nas **mesmas linhas de frontmatter**: `des
 Depois do merge, **reaplique e confira as duas coisas**:
 
 ```bash
-# 1. o flag nao voltou nas 7
-grep -l "disable-model-invocation: true" skills/*/*/SKILL.md
-
-# 2. as 11 continuam com o gatilho PT-BR
-grep -L "when_to_use:" skills/*/{triage,to-tickets,to-spec,handoff,grill-me,grill-with-docs,improve-codebase-architecture,diagnosing-bugs,prototype,tdd,writing-for-agents}/SKILL.md 2>/dev/null
+for nome in triage to-tickets to-spec handoff grill-me grill-with-docs \
+            improve-codebase-architecture diagnosing-bugs prototype tdd writing-for-agents
+do
+  f=$(printf '%s\n' skills/*/"$nome"/SKILL.md)
+  [ -f "$f" ] || { echo "AUSENTE: $nome"; continue; }
+  grep -q '^when_to_use:' "$f" || echo "SEM GATILHO: $nome"
+  grep -q '^disable-model-invocation: true' "$f" && echo "FLAG VOLTOU: $nome"
+done
 ```
 
-O primeiro deve não listar nenhuma das 7; o segundo (`-L`, maiúsculo, lista quem **não**
-casa) deve sair vazio. Se algo aparecer, o merge desfez a customização: reaplique.
+**Silêncio é o resultado bom.** Qualquer linha impressa é customização desfeita pelo merge:
+reaplique. O laço testa `-f` antes de gravar, e por isso distingue *"a skill sumiu"* de *"a
+skill está lá e perdeu a linha"*. Uma versão anterior deste comando usava
+`grep -L ... 2>/dev/null`, que engolia justamente o primeiro caso e saía vazia, ou seja,
+dizia "tudo certo" quando a skill nem existia mais.
 
 ⚠ **Depois de mexer em frontmatter, rode um parser YAML.** Trocar o travessão por
 dois-pontos nas 11 linhas `when_to_use:` quebrou **todas elas**: em YAML, um `: ` dentro de
@@ -125,8 +139,25 @@ escalar simples fecha o escalar, e `chave: texto: mais` é erro de sintaxe
 `"` são literais. Nenhum gatilho contém apóstrofo, então não há escape a fazer. A conferência:
 
 ```bash
-python -c "import io,glob,re,yaml; [yaml.safe_load(re.match(r'^---.n(.*?).n---',io.open(f,encoding='utf-8').read(),re.S).group(1)) for f in glob.glob('skills/*/*/SKILL.md')]"
+python - <<'PY'
+import glob, io, re, sys, yaml
+mau = []
+for f in sorted(glob.glob("skills/*/*/SKILL.md")):
+    m = re.match(r"^---\n(.*?)\n---\n", io.open(f, encoding="utf-8").read(), re.S)
+    if not m:
+        mau.append((f, "sem frontmatter"))
+        continue
+    try:
+        yaml.safe_load(m.group(1))
+    except Exception as e:
+        mau.append((f, str(e).split("\n")[0]))
+print("quebradas:", mau or "nenhuma")
+sys.exit(1 if mau else 0)
+PY
 ```
+
+Ele **diz qual arquivo** quebrou e sai com código 1, em vez de estourar uma exceção opaca no
+primeiro erro.
 
 O travessão **não** quebrava nada: ele saiu por causa da regra de prosa, não por sintaxe.
 

@@ -123,6 +123,9 @@ do
   [ -f "$f" ] || { echo "AUSENTE: $nome"; continue; }
   grep -q '^when_to_use:' "$f" || echo "SEM GATILHO: $nome"
   grep -q '^disable-model-invocation: true' "$f" && echo "FLAG VOLTOU: $nome"
+  y="$(dirname "$f")/agents/openai.yaml"
+  [ -f "$y" ] && grep -q 'allow_implicit_invocation: *false' "$y" \
+    && echo "POLICY VOLTOU: $nome"
 done
 ```
 
@@ -131,6 +134,13 @@ reaplique. O laço testa `-f` antes de gravar, e por isso distingue *"a skill su
 skill está lá e perdeu a linha"*. Uma versão anterior deste comando usava
 `grep -L ... 2>/dev/null`, que engolia justamente o primeiro caso e saía vazia, ou seja,
 dizia "tudo certo" quando a skill nem existia mais.
+
+A linha do `openai.yaml` existe porque o flag tem **duas metades** (ver a seção anterior), e um
+merge pode restaurar só uma. Sem ela, a skill ficaria model-invoked no Claude e só-do-usuário no
+Codex, e a guarda continuaria em silêncio: exatamente o estado incoerente que o `PR #1` deixou por
+uma rodada, quando eu tinha mexido só no `SKILL.md`. O `[ -f "$y" ]` é deliberado: nem toda skill
+tem `agents/openai.yaml`, e a ausência do arquivo não é defeito. A **presença** da linha `false`
+é.
 
 ⚠ **Depois de mexer em frontmatter, rode um parser YAML.** Trocar o travessão por
 dois-pontos nas 11 linhas `when_to_use:` quebrou **todas elas**: em YAML, um `: ` dentro de

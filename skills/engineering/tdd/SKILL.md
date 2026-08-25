@@ -1,6 +1,7 @@
 ---
 name: tdd
 description: Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions "red-green-refactor", or wants integration tests.
+when_to_use: 'Gatilhos em PT-BR: "corrija com teste", "quero testes disso", bug com comportamento reproduzível no agente-cotacao (pytest) ou no front (vitest). Para bug reproduzível, escreva o teste vermelho ANTES do fix.'
 ---
 
 # Test-Driven Development

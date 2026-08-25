@@ -8,7 +8,7 @@ Two filters keep the report from becoming generic cleanup advice. Every candidat
 
 ## When to reach for it
 
-You invoke this by typing `/improve-codebase-architecture`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) will not reach for it on its own.
+You invoke this by typing `/improve-codebase-architecture`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) can also reach for it on its own in this fork, which removes the `disable-model-invocation` flag that upstream sets here (see [CUSTOMIZACAO.md](https://github.com/mbergantini/skills/blob/main/CUSTOMIZACAO.md)).
 
 It sits outside the build loop: it is not a step in the main loop but something you run periodically to queue up more work to improve the codebase. The four situations it gets used in:
 

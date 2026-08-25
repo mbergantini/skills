@@ -1,7 +1,7 @@
 ---
 name: to-spec
 description: "Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed."
-when_to_use: Gatilhos em PT-BR (frases reais do usuário) — "vira isso num PRD", "documento de produto", "isso é grande demais para uma issue", "precisamos especificar antes de quebrar". Use quando a mudança for grande o bastante para virar VÁRIAS issues. Se o pedido cita "issue" no singular, é to-issues (ou triage) — não esta.
+when_to_use: 'Gatilhos em PT-BR (frases reais do usuário): "vira isso num PRD", "documento de produto", "isso é grande demais para uma issue", "precisamos especificar antes de quebrar". Use quando a mudança for grande o bastante para virar VÁRIAS issues. Se o pedido cita "issue" no singular, é to-tickets (ou triage), não esta.'
 ---
 
 This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user; just synthesize what you already know.

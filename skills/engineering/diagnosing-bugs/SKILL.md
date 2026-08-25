@@ -1,6 +1,7 @@
 ---
 name: diagnosing-bugs
 description: Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.
+when_to_use: 'Gatilhos em PT-BR (frases reais do usuário): "deu erro", "ainda deu erro", "não funcionou", "parou de responder", "está quebrado", "falhou de novo", "por que isso está acontecendo". Se o mesmo erro já apareceu 2+ vezes ou a causa não é óbvia, entre neste loop em vez de tentar outra correção no chute.'
 ---
 
 # Diagnosing Bugs

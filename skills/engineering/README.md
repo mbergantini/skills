@@ -2,6 +2,8 @@
 
 Skills I use daily for code work.
 
+> **Fork note.** The User-invoked / Model-invoked split below is the upstream's, kept verbatim so that `git merge upstream/main` stays cheap. This fork moves seven skills to model-invoked: `triage`, `to-tickets`, `to-spec`, `handoff`, `grill-me`, `grill-with-docs` and `improve-codebase-architecture`. Their own docs pages carry the correction; this list does not. See [CUSTOMIZACAO.md](../../CUSTOMIZACAO.md).
+
 ## User-invoked
 
 Reachable only when you type them (Claude Code: `disable-model-invocation: true`; Codex: `policy.allow_implicit_invocation: false` in `agents/openai.yaml`).

@@ -185,6 +185,8 @@ Software engineering fundamentals matter more than ever. These skills are my bes
 
 These split on one axis: who can invoke them. **User-invoked** skills are reachable only when you type them (e.g. `/grill-me`); their job is to orchestrate. **Model-invoked** skills can be invoked by you _or_ reached for automatically by the agent when the task fits; they hold the reusable discipline. A user-invoked skill may invoke model-invoked skills, but never another user-invoked one.
 
+> **Fork note.** The User-invoked / Model-invoked grouping below is the upstream's, and it is kept verbatim on purpose so that `git merge upstream/main` stays cheap. This fork moves seven of them to model-invoked: `triage`, `to-tickets`, `to-spec`, `handoff`, `grill-me`, `grill-with-docs` and `improve-codebase-architecture`. They are listed under **User-invoked** below, which is where upstream puts them, not where this fork does. See [CUSTOMIZACAO.md](./CUSTOMIZACAO.md) for why, and for the measurement behind the choice.
+
 ### Engineering
 
 Skills I use daily for code work.

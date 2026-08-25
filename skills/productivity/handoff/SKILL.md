@@ -2,7 +2,7 @@
 name: handoff
 description: Compact the current conversation into a handoff document for another agent to pick up.
 argument-hint: "What will the next session be used for?"
-disable-model-invocation: true
+when_to_use: Gatilhos em PT-BR (frases reais do usuário) — "faça um handoff", "compacte a janela", "para não poluir o contexto", "vamos continuar depois/em outra sessão", "farei o merge e continuaremos depois". Também ao concluir tarefa longa ou antes de compactação iminente — proponha sem esperar o pedido. Para recapitular DENTRO da sessão, sem escrever arquivo, use landing.
 ---
 
 Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.

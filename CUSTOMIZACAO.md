@@ -38,6 +38,22 @@ As 7 liberadas foram escolhidas **por medição**, não por preferência —
 pelo usuário. A skill volta a ser invocável; a disciplina de não escrever fora sem aval é
 regra do repo, não do frontmatter.
 
+## O manifesto do marketplace
+
+`.claude-plugin/marketplace.json` declara `name: mattpocock-skills-fork`, nao o `mattpocock`
+herdado do upstream. Isso nao e cosmetico: o nome do manifesto e a **identidade pela qual o
+Claude Code resolve o marketplace**, e ele precisa bater com a chave em
+`extraKnownMarketplaces` do `settings.json` no `claude-config`. Com o nome do upstream, tanto
+`claude plugin marketplace add` quanto a declaracao pinada registram um marketplace com nome
+diferente do esperado, e o `plugin install mattpocock-skills@mattpocock-skills-fork` falha com
+*"not found in marketplace"*.
+
+O `plugins[0].name` continua `mattpocock-skills` de proposito — e o nome do **plugin**, e e o
+prefixo das skills (`mattpocock-skills:triage`). Trocar isso quebraria todas as invocacoes
+escritas no `CLAUDE.md`.
+
+**Num merge do upstream, se este arquivo conflitar, mantenha o nome do fork.**
+
 ## Como atualizar
 
 ```bash

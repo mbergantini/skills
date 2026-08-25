@@ -60,7 +60,7 @@ Ask whether it's true next month. `CLAUDE.md` is standing context about the proj
 A fair and repeated criticism. Two things help. Pass the argument (tell it what the next session is for) so the reasoning that bears on *that* is kept rather than flattened. And watch for confident claims the session never actually verified: "X isn't built", "Y is done". The next agent treats the document as a contract and will not re-check it, so a belief written as a fact becomes a false premise for everything that follows. Read the document before you hand it over, and downgrade anything you only assumed.
 
 **Why is it a skill rather than a slash command?**
-Both work; they suit different situations. As a skill it ships and updates through the same install path as everything else here, which is what makes it shareable; the constraint that the agent won't fire it itself is set by its frontmatter rather than by the mechanism.
+Both work; they suit different situations. As a skill it ships and updates through the same install path as everything else here, which is what makes it shareable; upstream sets the constraint that the agent won't fire it itself in its frontmatter rather than in the mechanism, and this fork removes that constraint (see [CUSTOMIZACAO.md](https://github.com/mbergantini/skills/blob/main/CUSTOMIZACAO.md)).
 
 ## It's working if
 

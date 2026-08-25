@@ -1,10 +1,10 @@
 {
-  "name": "mattpocock",
+  "name": "mattpocock-skills-fork",
   "owner": {
-    "name": "Matt Pocock",
-    "url": "https://www.aihero.dev"
+    "name": "Mateus Bergantini (fork de mattpocock/skills)",
+    "url": "https://github.com/mbergantini/skills"
   },
-  "description": "Matt Pocock's skills for real engineering, as an installable Claude Code plugin.",
+  "description": "Fork de mattpocock/skills (MIT) com when_to_use em pt-BR e sem disable-model-invocation em 7 skills. Ver CUSTOMIZACAO.md.",
   "plugins": [
     {
       "name": "mattpocock-skills",

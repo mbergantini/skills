@@ -6,7 +6,7 @@ arquivo. Isso é deliberado: quanto menor o diff, mais barato o `git merge upstr
 
 ## As duas mudanças
 
-### 1. `when_to_use` em português (**11 skills**)
+### 1. `when_to_use` em português (**12 skills**)
 
 O agente decide invocar uma skill lendo a `description` e o `when_to_use`. Com eles em inglês
 genérico, as frases reais do usuário (*"vamos fazer uma triagem das issues"*, *"faça um
@@ -16,27 +16,28 @@ handoff"*, *"alinhe comigo"*) não casavam.
 descrição da tool (*"Becomes part of the tool description"*, no schema de frontmatter do
 binário). O formato de skill do **Codex** lê apenas `name` e `description`, então lá estes
 gatilhos não participam da descoberta. Duplicá-los na `description` significaria reescrever o
-texto em inglês do upstream em 11 arquivos, que é exatamente o tipo de diff que encarece o
+texto em inglês do upstream em 12 arquivos, que é exatamente o tipo de diff que encarece o
 merge, e o Codex não é o harness em uso aqui. Fica registrado como limite conhecido, não como
 esquecimento.
 
 São as 11 citadas nominalmente nas regras do usuário: `triage`, `to-tickets`, `to-spec`,
 `handoff`, `grill-me`, `grill-with-docs`, `improve-codebase-architecture`, `diagnosing-bugs`,
-`prototype`, `tdd`, `writing-for-agents`.
+`prototype`, `tdd`, `writing-for-agents`. A 12ª, `implement`, entrou depois, junto com a liberação
+dela (ver a seção seguinte).
 
 Os gatilhos vieram de `docs/skills/overlay-when-to-use.json` no repo `claude-config`, extraído
 das cópias locais em 2026-08-15. Enquanto viveram só naquele arquivo de documentação eles não
 disparavam: gatilho fora do frontmatter não entra na decisão de invocar. Esse era o custo
 declarado da Fase 2, e este fork existe para zerá-lo.
 
-### 2. `disable-model-invocation` removido em 7 skills
+### 2. `disable-model-invocation` removido em 8 skills
 
 O upstream marca **15** skills como só-do-usuário. O critério dele é coerente e foi preservado
 onde não há razão para contrariá-lo: são as que **tomam a conversa** (`teach`, `wait-what`,
 `loop-me`), **fazem setup** (`setup-*`, `wayfinder`) ou **escrevem em modo de redação**
 (`writing-*`).
 
-As 7 liberadas foram escolhidas **por medição**, não por preferência. A fonte é
+As 7 primeiras foram escolhidas **por medição**, não por preferência. A fonte é
 `~/.claude/bin/medir-ativacao.py`, janela de 60 dias:
 
 | Skill | Oportunidades | Atendidas | |
@@ -47,23 +48,29 @@ As 7 liberadas foram escolhidas **por medição**, não por preferência. A font
 | `to-tickets`, `to-spec` | 1 | 0 | estão na tabela de pré-condição do `CLAUDE.md` |
 | `grill-with-docs`, `improve-codebase-architecture` | n/d | n/d | citadas nas regras |
 
+A 8ª, `implement`, saiu do **plano Harness v4** (ticket 3.1, `mbergantini/claude-config#101`), e não de
+uma medição de lacuna: ela é o passo central do fluxo (`to-tickets` → `implement` → `code-review`), e
+a persona `implementador` e a skill `fluxo-dev` do `claude-config` precisam alcançá-la. Bloqueada, ela
+mediu 0 chamadas pelo agente, e a medição não tinha como dizer outra coisa.
+
 **O que NÃO muda:** `triage`, `to-spec` e `to-tickets` escrevem no issue tracker. A regra do
 `CLAUDE.md` continua valendo: o agente abre e propõe; criar, rotular e fechar em massa passa
 pelo usuário. A skill volta a ser invocável; a disciplina de não escrever fora sem aval é
-regra do repo, não do frontmatter.
+regra do repo, não do frontmatter. O mesmo vale para `implement`, que commita no branch atual:
+worktree por issue e nunca trabalhar na `main` continuam sendo regras do repo.
 
 ### O que anda junto com o flag, e o que não anda
 
 O `CLAUDE.md` deste repo trata **dois** campos como par: `disable-model-invocation: true` no
 `SKILL.md` e `policy.allow_implicit_invocation: false` no `agents/openai.yaml` da skill. Skill
-model-invoked simplesmente **omite** o bloco `policy:`. As 7 tiveram os dois removidos.
+model-invoked simplesmente **omite** o bloco `policy:`. As 8 tiveram os dois removidos.
 
 O que **não** foi acompanhado, por decisão explicita:
 
 | Invariante do repo | Situação neste fork |
 |---|---|
-| `agents/openai.yaml` casado com o flag | **acompanhado** (7 blocos `policy:` removidos) |
-| `docs/` afirma quem alcança a skill | **acompanhado** (a cláusula falsa foi trocada nas 7 páginas) |
+| `agents/openai.yaml` casado com o flag | **acompanhado** (8 blocos `policy:` removidos) |
+| `docs/` afirma quem alcança a skill | **acompanhado** (a cláusula falsa foi trocada nas 8 páginas) |
 | `README.md` agrupa em User-invoked / Model-invoked | **nota de desvio**, sem mover entradas |
 | `README.md` de cada bucket, idem | **nota de desvio**, sem mover entradas |
 | `ask-matt` rotula quem invoca o quê | **não acompanhado**, de propósito |
@@ -83,7 +90,7 @@ A razão é a mesma que justifica o fork inteiro: reescrever três `README.md` e
 transformaria cada `git merge upstream/main` numa negociação de conflitos em arquivos que o Matt
 edita com frequência. O ganho funcional seria zero, porque quem lê o flag é o harness, não o
 README. Em troca, o `README.md` ganhou **uma linha** no topo da seção Reference dizendo que o
-agrupamento abaixo é o do upstream e nomeando as 7 que este fork move. Assim o documento para de
+agrupamento abaixo é o do upstream e nomeando as 8 que este fork move. Assim o documento para de
 mentir sem virar superfície de conflito.
 
 ## O manifesto do marketplace
@@ -117,7 +124,7 @@ Depois do merge, **reaplique e confira as duas coisas**:
 
 ```bash
 for nome in triage to-tickets to-spec handoff grill-me grill-with-docs \
-            improve-codebase-architecture diagnosing-bugs prototype tdd writing-for-agents
+            improve-codebase-architecture diagnosing-bugs prototype tdd writing-for-agents implement
 do
   f=$(printf '%s\n' skills/*/"$nome"/SKILL.md)
   [ -f "$f" ] || { echo "AUSENTE: $nome"; continue; }

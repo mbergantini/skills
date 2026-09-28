@@ -69,7 +69,7 @@ O que **não** foi acompanhado, por decisão explicita:
 
 | Invariante do repo | Situação neste fork |
 |---|---|
-| `agents/openai.yaml` casado com o flag | **acompanhado** (7 blocos `policy:` removidos) |
+| `agents/openai.yaml` casado com o flag | **acompanhado** (8 blocos `policy:` removidos) |
 | `docs/` afirma quem alcança a skill | **acompanhado** (a cláusula falsa foi trocada nas 8 páginas) |
 | `README.md` agrupa em User-invoked / Model-invoked | **nota de desvio**, sem mover entradas |
 | `README.md` de cada bucket, idem | **nota de desvio**, sem mover entradas |

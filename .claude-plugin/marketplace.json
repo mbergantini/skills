@@ -4,7 +4,7 @@
     "name": "Mateus Bergantini (fork de mattpocock/skills)",
     "url": "https://github.com/mbergantini/skills"
   },
-  "description": "Fork de mattpocock/skills (MIT) com when_to_use em pt-BR e sem disable-model-invocation em 7 skills. Ver CUSTOMIZACAO.md.",
+  "description": "Fork de mattpocock/skills (MIT) com when_to_use em pt-BR e sem disable-model-invocation em 8 skills. Ver CUSTOMIZACAO.md.",
   "plugins": [
     {
       "name": "mattpocock-skills",

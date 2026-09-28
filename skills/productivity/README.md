@@ -2,7 +2,7 @@
 
 General workflow tools, not code-specific.
 
-> **Fork note.** The User-invoked / Model-invoked split below is the upstream's, kept verbatim so that `git merge upstream/main` stays cheap. This fork moves seven skills to model-invoked: `triage`, `to-tickets`, `to-spec`, `handoff`, `grill-me`, `grill-with-docs` and `improve-codebase-architecture`. Their own docs pages carry the correction; this list does not. See [CUSTOMIZACAO.md](../../CUSTOMIZACAO.md).
+> **Fork note.** The User-invoked / Model-invoked split below is the upstream's, kept verbatim so that `git merge upstream/main` stays cheap. This fork moves eight skills to model-invoked: `triage`, `to-tickets`, `to-spec`, `handoff`, `grill-me`, `grill-with-docs`, `improve-codebase-architecture` and `implement`. Their own docs pages carry the correction; this list does not. See [CUSTOMIZACAO.md](../../CUSTOMIZACAO.md).
 
 ## User-invoked
 

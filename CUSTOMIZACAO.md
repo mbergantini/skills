@@ -32,8 +32,9 @@ declarado da Fase 2, e este fork existe para zerá-lo.
 
 ### 2. `disable-model-invocation` removido em 8 skills
 
-O upstream marca **15** skills como só-do-usuário. O critério dele é coerente e foi preservado
-onde não há razão para contrariá-lo: são as que **tomam a conversa** (`teach`, `wait-what`,
+Das que o upstream marca como só-do-usuário, **14** continuam assim neste fork (eram 15 antes de o
+`implement` ser liberado). O critério dele é coerente e foi preservado onde não há razão para
+contrariá-lo: são as que **tomam a conversa** (`teach`, `wait-what`,
 `loop-me`), **fazem setup** (`setup-*`, `wayfinder`) ou **escrevem em modo de redação**
 (`writing-*`).
 

@@ -5,7 +5,7 @@ argument-hint: "What will the next session be used for?"
 when_to_use: 'Gatilhos em PT-BR (frases reais do usuário): "faça um handoff", "compacte a janela", "para não poluir o contexto", "vamos continuar depois/em outra sessão", "farei o merge e continuaremos depois". Também ao concluir tarefa longa ou antes de compactação iminente, proponha sem esperar o pedido. Para recapitular DENTRO da sessão, sem escrever arquivo, use landing.'
 ---
 
-Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.
+Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS (`$TMPDIR`, else `/tmp`; `%TEMP%` on Windows) - not the current workspace.
 
 Include a "suggested skills" section in the document, naming which skills the next agent should call the Skill tool for.
 

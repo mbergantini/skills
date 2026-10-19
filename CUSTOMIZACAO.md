@@ -1,10 +1,10 @@
 # Este fork, e por que ele existe
 
 Fork de [`mattpocock/skills`](https://github.com/mattpocock/skills) (MIT). O upstream é a
-fonte; aqui só existem **duas** customizações, ambas no frontmatter, ambas de uma linha por
-arquivo. Isso é deliberado: quanto menor o diff, mais barato o `git merge upstream/main`.
+fonte; aqui existem **quatro** customizações, todas de uma linha por arquivo: três no frontmatter
+e uma frase de overlay em duas skills. Isso é deliberado: quanto menor o diff, mais barato o `git merge upstream/main`.
 
-## As duas mudanças
+## As mudanças
 
 ### 1. `when_to_use` em português (**12 skills**)
 
@@ -94,6 +94,39 @@ README. Em troca, o `README.md` ganhou **uma linha** no topo da seção Referenc
 agrupamento abaixo é o do upstream e nomeando as 8 que este fork move. Assim o documento para de
 mentir sem virar superfície de conflito.
 
+### 3. `disable-model-invocation` acrescentado em `pr` (desde a v1.3.1)
+
+O inverso da mudança 2. A `pr`, nova na 1.3, vem model-invoked com a descrição *"Use when
+writing a PR body"*, e passaria a disparar sozinha em todo PR. No `claude-config` o corpo de PR já
+tem dono: a skill `babysit-pr` e o `.github/pull_request_template.md`, com o bloco de hipótese e a
+classe do PR pela régua de merge. Duas fontes para o mesmo corpo competiriam. A `pr` fica instalada
+e chamável como `/pr`; só não dispara sozinha. O par do `openai.yaml` (`policy:` com
+`allow_implicit_invocation: false`) foi acrescentado junto, e a página `docs/engineering/pr.md`
+teve as duas frases que diziam "model-invoked" trocadas.
+
+`retro` e `implement-spec`, as outras duas novas da 1.3, já vêm só-do-usuário e ficam como estão.
+
+### 4. `CONTEXT.md` aceito como glossário (desde a v1.3.1)
+
+A 1.3 renomeou `CONTEXT.md` para `GLOSSARY.md` em todas as skills e manda o glossário ter **só**
+termos. Nos repos do usuário o `CONTEXT.md` guarda também o estado implementado e a arquitetura,
+e o `CLAUDE.md` global e a skill `fluxo-dev` o citam pelo nome. Sem ajuste, a `domain-modeling`
+criaria um `GLOSSARY.md` vazio ao lado do `CONTEXT.md` no primeiro termo resolvido.
+
+Reverter a renomeação seriam 16 arquivos em conflito a cada merge. Em vez disso, uma frase em
+posição estável, nas duas skills que **gravam** o glossário: `domain-modeling` (parágrafo
+`**Fork:**` depois de *"Create files lazily"*) e `improve-codebase-architecture` (um item a mais
+na lista de efeitos). Repo com `CONTEXT.md` e sem `GLOSSARY.md` usa o `CONTEXT.md`; repo com
+`GLOSSARY.md` segue o upstream. As skills que só **leem** (`tdd`, `diagnosing-bugs`) pulam o
+`CONTEXT.md`, e isso é aceito: o `CLAUDE.md` global já manda lê-lo antes de planejar.
+
+### O que saiu do upstream e foi para o `claude-config`
+
+A 1.3 removeu `resolving-merge-conflicts` (*"No longer needed"*). O usuário a tinha invocado em 13
+sessões, então ela foi copiada da 1.2.3, com o crédito MIT, para as skills autorais do
+`claude-config`. Não volta para este fork: restaurá-la aqui seria conflito no `plugin.json` a cada
+release.
+
 ## O manifesto do marketplace
 
 `.claude-plugin/marketplace.json` declara `name: mattpocock-skills-fork`, nao o `mattpocock`
@@ -138,6 +171,10 @@ do
     echo "POLICY VOLTOU: $nome"
   fi
 done
+grep -q '^disable-model-invocation: true' skills/engineering/pr/SKILL.md || echo "PR LIBERADA"
+grep -q 'allow_implicit_invocation: *false' skills/engineering/pr/agents/openai.yaml || echo "PR POLICY SUMIU"
+grep -q '^\*\*Fork:\*\*.*CONTEXT.md' skills/engineering/domain-modeling/SKILL.md || echo "OVERLAY SUMIU: domain-modeling"
+grep -q 'CONTEXT.md.*no .GLOSSARY.md' skills/engineering/improve-codebase-architecture/SKILL.md || echo "OVERLAY SUMIU: improve-codebase-architecture"
 ```
 
 **Silêncio é o resultado bom.** Qualquer linha impressa é customização desfeita pelo merge:

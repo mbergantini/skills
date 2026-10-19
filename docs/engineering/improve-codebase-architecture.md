@@ -29,7 +29,7 @@ Where it is confusable with siblings:
 
 None to run it. If `GLOSSARY.md` or ADRs in `docs/adr/` exist, it reads them and uses your domain's own nouns. A candidate then reads as "deepen the Order intake module," not "refactor the FooBarHandler."
 
-It writes in two places. The report goes to `<tmpdir>/architecture-review-<timestamp>.html`, outside the repo. During the grilling loop it adds or sharpens terms in `GLOSSARY.md`, and creates that file if it does not exist. It also offers to record a rejected candidate as an ADR, so a future run does not suggest it again.
+It writes in two places. The report goes to `<tmpdir>/architecture-review-<timestamp>.html`, outside the repo. During the grilling loop it adds or sharpens terms in `GLOSSARY.md`, and creates that file if it does not exist. In this fork, a repo with a root `CONTEXT.md` and no `GLOSSARY.md` keeps its terms in the glossary section of that `CONTEXT.md` instead, and no `GLOSSARY.md` is created (see [CUSTOMIZACAO.md](https://github.com/mbergantini/skills/blob/main/CUSTOMIZACAO.md)). It also offers to record a rejected candidate as an ADR, so a future run does not suggest it again.
 
 ## Depth, and the report that hunts for it
 

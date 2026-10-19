@@ -23,7 +23,7 @@ Reach for it when the *words* are the problem:
 
 None up front. The skill writes into two places and creates both lazily:
 
-- **`GLOSSARY.md`** at the repo root. The skill creates it when you settle the first term. In a repo with a `GLOSSARY-MAP.md` at the root, terms go into the per-context `GLOSSARY.md` the map points at instead.
+- **`GLOSSARY.md`** at the repo root. The skill creates it when you settle the first term. In a repo with a `GLOSSARY-MAP.md` at the root, terms go into the per-context `GLOSSARY.md` the map points at instead. In this fork, a repo with a root `CONTEXT.md` and no `GLOSSARY.md` keeps its terms in the glossary section of that `CONTEXT.md` instead, and no `GLOSSARY.md` is created (see [CUSTOMIZACAO.md](https://github.com/mbergantini/skills/blob/main/CUSTOMIZACAO.md)).
 - **`docs/adr/`**. The skill creates it with the first ADR that clears the bar.
 
 Nothing needs to exist before you start, and the skill creates nothing in advance.

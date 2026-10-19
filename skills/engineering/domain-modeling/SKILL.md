@@ -39,7 +39,7 @@ If a `GLOSSARY-MAP.md` exists at the root, the repo has multiple contexts. The m
 
 Create files lazily: only when you have something to write. If no `GLOSSARY.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is needed.
 
-**Fork:** if the repo root has a `CONTEXT.md` and no `GLOSSARY.md`, that `CONTEXT.md` is the glossary. Read the terms there and write new ones in its glossary section; leave its other sections (implemented state, architecture) alone, and don't create a `GLOSSARY.md` next to it.
+**Fork:** if the repo root has a `CONTEXT.md` and no `GLOSSARY.md`, that `CONTEXT.md` is the glossary. Read the terms there and write new ones in its glossary section; leave its other sections (implemented state, architecture) alone, and don't create a `GLOSSARY.md` next to it. Every `GLOSSARY.md` below (create lazily, challenge against it, update it inline) then means that glossary section of `CONTEXT.md`.
 
 ## During the session
 

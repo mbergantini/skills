@@ -6,7 +6,7 @@ The summary is a visual, not a paragraph. A default PR body describes the diff i
 
 ## When to reach for it
 
-Type `/pr`, or the agent reaches for it automatically whenever it is writing a PR body.
+Type `/pr`. Upstream lets the agent reach for it on its own whenever it writes a PR body; this fork makes it user-invoked (see [CUSTOMIZACAO.md](https://github.com/mbergantini/skills/blob/main/CUSTOMIZACAO.md)).
 
 | Your situation | Reach for |
 | --- | --- |

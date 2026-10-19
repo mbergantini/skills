@@ -102,7 +102,9 @@ tem dono: a skill `babysit-pr` e o `.github/pull_request_template.md`, com o blo
 classe do PR pela régua de merge. Duas fontes para o mesmo corpo competiriam. A `pr` fica instalada
 e chamável como `/pr`; só não dispara sozinha. O par do `openai.yaml` (`policy:` com
 `allow_implicit_invocation: false`) foi acrescentado junto, e a página `docs/engineering/pr.md`
-teve as duas frases que diziam "model-invoked" trocadas.
+teve as duas frases que diziam "model-invoked" trocadas. O `ask-matt` também: a linha que
+roteava a `pr` dizia que o agente a chama sozinho, e isso deixou de ser verdade aqui, então é a
+única frase dele que este fork mexe (a regra da tabela acima: fato afirmado se acompanha).
 
 `retro` e `implement-spec`, as outras duas novas da 1.3, já vêm só-do-usuário e ficam como estão.
 
